@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -148,7 +149,7 @@
   # services.xserver.libinput.enable = true;
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Fish shell
   programs.fish.enable = true;
@@ -177,6 +178,8 @@
     haruna
     microsoft-edge
     qbittorrent
+    foliate
+    inputs.zen-browser.packages."${system}".default
   ];
 
   fonts.packages = with pkgs; [
