@@ -2,28 +2,6 @@
   pkgs,
   ...
 }:
-with builtins;
-let
-  promptOrder = [
-    "[╭](fg:current_line)"
-    "os"
-    "directory"
-    "git_branch"
-    "fill"
-    "python"
-    # "rust"
-    "cmd_duration"
-    "shell"
-    "time"
-    "username"
-    "line_break"
-    "character"
-  ];
-
-  promptFormat = concatStrings (map (s: "\$${s}") promptOrder);
-
-in
-
 {
   programs.starship = {
     enable = true;
