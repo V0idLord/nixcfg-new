@@ -14,7 +14,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./boot.nix
-    ./fingerprint.nix
+    # ./fingerprint.nix
   ];
 
   #Enable zram
@@ -100,18 +100,24 @@
     options = "--delete-older-than 1w";
   };
 
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+  
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    khelpcenter
-    kate
-  ];
+  # services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  #   khelpcenter
+  #   kate
+  # ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -175,10 +181,10 @@
     proton-pass
     logseq
     starsector
-    haruna
     microsoft-edge
     qbittorrent
     foliate
+    cosmic-ext-tweaks
     inputs.zen-browser.packages."${system}".default
   ];
 
@@ -195,6 +201,16 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
+#   services.power-profiles-daemon.enable = false;
+#   services.tlp = {
+#       enable = true;
+#       settings = {
+#        #Optional helps save long term battery health
+#        START_CHARGE_THRESH_BAT0 = 65; # 65 and below it starts to charge
+#        STOP_CHARGE_THRESH_BAT0 = 70; # 70 and above it stops charging
+#       };
+# };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -207,7 +223,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

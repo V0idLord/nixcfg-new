@@ -48,6 +48,7 @@
     marksman
     harper
     # julia-bin
+    gcr # Provides org.gnome.keyring.SystemPrompter
   ];
 
 }
