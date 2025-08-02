@@ -9,13 +9,6 @@
     ./features/cli
   ];
 
-  features = {
-    cli = {
-      fish.enable = true;
-      fastfetch.enable = true;
-    };
-  };
-
   home = {
     username = "greg";
     homeDirectory = "/home/greg";
@@ -42,5 +35,18 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.size = 10000;
+  };
+
+  services.udiskie = {
+    enable = true;
+    tray = "auto";
+    settings = {
+      # workaround for
+      # https://github.com/nix-community/home-manager/issues/632
+      program_options = {
+        # replace with your favorite file manager
+        file_manager = "${pkgs.cosmic-files}/bin/cosmic-files";
+      };
+    };
   };
 }

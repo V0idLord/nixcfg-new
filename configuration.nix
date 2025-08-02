@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -20,7 +19,7 @@
   #Enable zram
   zramSwap.enable = true;
 
-    hardware.bluetooth = {
+  hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
@@ -71,7 +70,10 @@
   };
 
   # Linux Firmware Update Daemon
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
+
+  # USB devices auto-mount
+  services.udisks2.enable = true;
 
   # Use Sudo-rs and disable sudo
   security = {
@@ -83,8 +85,10 @@
     };
   };
 
-  # Set Default Shell
-  users.defaultUserShell = pkgs.fish;
+
+  programs.zsh.enable = true;
+  # # Set Default Shell
+  users.defaultUserShell = pkgs.zsh;
 
   nix.settings = {
     experimental-features = [
@@ -104,7 +108,7 @@
   services.displayManager.cosmic-greeter.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.login.enableGnomeKeyring = true;
+  security.pam.services.cosmic-greeter.enableGnomeKeyring = true;
   
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -157,14 +161,11 @@
   # Install firefox.
   # programs.firefox.enable = true;
 
-  # Fish shell
-  programs.fish.enable = true;
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
-  ];
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   # Add any missing dynamic libraries for unpackaged programs
+  #   # here, NOT in environment.systemPackages
+  # ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -177,12 +178,13 @@
     discord
     spotify
     zotero
+    jabref
     signal-desktop-bin
     proton-pass
     logseq
     starsector
     microsoft-edge
-    qbittorrent
+    # qbittorrent
     foliate
     cosmic-ext-tweaks
     inputs.zen-browser.packages."${system}".default

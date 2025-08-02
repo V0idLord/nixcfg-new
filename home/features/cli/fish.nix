@@ -1,15 +1,10 @@
 {
-  config,
-  lib,
+  pkgs,
   ...
 }:
-with lib; let
-  cfg = config.features.cli.fish;
-in {
-  options.features.cli.fish.enable = mkEnableOption "enable extended fish configuration";
 
-  config = mkIf cfg.enable {
-    programs.fish = {
+{
+  programs.fish = {
       enable = true;
       interactiveShellInit = ''
         fish_config theme choose Dracula
@@ -27,5 +22,4 @@ in {
       '';
       # shellAbbrs = {};
     };
-  };
 }

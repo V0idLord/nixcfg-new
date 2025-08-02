@@ -2,22 +2,16 @@
 {
   imports = [
     ./fish.nix
-    ./fastfetch.nix
     ./starship.nix
     ./ghostty.nix
   ];
 
-  programs.zoxide = {
-    enable = true;
-    #enableNushellIntegration = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-  };
-
+  programs.zoxide.enable = true;
   programs.eza = {
     enable = true;
-    # enableNushellIntegration = true;
+    # enableNushellIntegration = false;
     enableBashIntegration = true;
+    enableZshIntegration = true;
     enableFishIntegration = true;
     extraOptions = [
       "-l"
@@ -37,6 +31,8 @@
     tealdeer
     zip
     yazi
+    gcr # Provides org.gnome.keyring.SystemPrompter
+    fastfetch
     rustup
     uv
     pixi
@@ -48,7 +44,6 @@
     marksman
     harper
     # julia-bin
-    gcr # Provides org.gnome.keyring.SystemPrompter
   ];
 
 }
