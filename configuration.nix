@@ -106,23 +106,13 @@
 
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
-
+  # Enable XWayland support in COSMIC
+  services.desktopManager.cosmic.xwayland.enable = true;
+  
+  # Enable gnome-keyring
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.cosmic-greeter.enableGnomeKeyring = true;
   
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  # services.desktopManager.plasma6.enable = true;
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  #   khelpcenter
-  #   kate
-  # ];
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "pt";
@@ -140,7 +130,7 @@
   security.rtkit.enable = true;
 
   # Disable Auto-Mute for key LED bug
-  # hardware.alsa.enablePersistence = true;
+  hardware.alsa.enablePersistence = true;
 
   services.pipewire = {
     enable = true;
@@ -154,9 +144,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Install firefox.
   # programs.firefox.enable = true;
@@ -178,15 +165,11 @@
     discord
     spotify
     zotero
-    jabref
     signal-desktop-bin
-    proton-pass
     logseq
     starsector
-    microsoft-edge
-    # qbittorrent
-    foliate
     cosmic-ext-tweaks
+    microsoft-edge
     inputs.zen-browser.packages."${system}".default
   ];
 
@@ -194,6 +177,8 @@
     monaspace
     corefonts
   ];
+
+  services.flatpak.enable = true;
 
   programs.gamemode.enable = true;
   programs.steam = {
