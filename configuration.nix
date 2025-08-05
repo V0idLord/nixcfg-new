@@ -4,7 +4,6 @@
 
 {
   pkgs,
-  inputs,
   ...
 }:
 
@@ -170,7 +169,6 @@
     starsector
     cosmic-ext-tweaks
     microsoft-edge
-    inputs.zen-browser.packages."${system}".default
   ];
 
   fonts.packages = with pkgs; [
