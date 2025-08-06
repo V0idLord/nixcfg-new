@@ -169,6 +169,7 @@
     starsector
     cosmic-ext-tweaks
     microsoft-edge
+    foliate
   ];
 
   fonts.packages = with pkgs; [

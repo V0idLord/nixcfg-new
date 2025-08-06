@@ -17,6 +17,15 @@
 
   programs.home-manager.enable = true;
   # basic configuration of git, please change to your own
+  
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Cosmic";
+      package = pkgs.cosmic-icons;
+    };
+  };
+  
   programs.git = {
     enable = true;
     userName = "Greg";
