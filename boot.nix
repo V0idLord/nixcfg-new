@@ -1,9 +1,13 @@
 { config, pkgs, ... }:
 
 {
+
+  #Enable zram
+  zramSwap.enable = true;
+
   # Bootloader
   boot = {
-    
+
     loader = {
       systemd-boot = {
         enable = true;
@@ -11,6 +15,10 @@
       };
       efi.canTouchEfiVariables = true;
     };
+
+    # Use latest kernel
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "bcachefs" ];
 
     plymouth = {
       enable = true;
@@ -34,7 +42,7 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-    ];
+      ];
   };
-  
+
 }
